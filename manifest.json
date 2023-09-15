@@ -1,0 +1,38 @@
+{
+    "manifest_version": 2,
+    "name": "Focus",
+    "version": "1.1",
+  
+    "description": "Allows you to focus more while you're working.",
+  
+    "icons": {
+      "48": "icons/icon-48-white.png",
+      "512": "icons/icon-full-white.png"
+    },
+
+    "web_accessible_resources": [
+        "pages/redirect.html*"
+    ],
+
+    "browser_action": {
+        "default_icon": "icons/icon-full-white.png",
+        "default_title": "Focus",
+        "default_popup": "popup/popup.html"
+    },
+  
+    "background": {
+        "scripts": [
+            "background/blocker.js",
+            "background/setup.js"
+        ],
+        "type": "module"
+    },
+
+    "permissions": [
+        "<all_urls>",
+        "webRequest",
+        "webRequestBlocking",
+        "storage"
+    ]
+}
+  

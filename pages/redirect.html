@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOCKED</title>
+    <style>
+        html, * {
+            background-color: #121212;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 5em;
+        }
+
+        h1 {
+            font-size: 400%;
+        }
+
+        p {
+            font-size: 200%;
+        }
+
+        #done-warning {
+            color: green;
+            font-weight: bolder;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>PAGE HAS BEEN BLOCKED</h1>
+    <p><a id="website-link">placeholder</a> has been blocked so you can remain focused!</p>
+    <p id="done-warning">You can now visit the site again!</p>
+    <p>Focus time remaining: <a id="timer">loading...</a></p>
+    <p>You're doing great, keep going!</p>
+    <script src="timer.js"></script>
+</body>
+</html>
