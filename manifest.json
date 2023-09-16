@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Focus",
-    "version": "1.1",
+    "version": "1.2",
   
     "description": "Allows you to focus more while you're working.",
   
@@ -11,7 +11,8 @@
     },
 
     "web_accessible_resources": [
-        "pages/redirect.html*"
+        "pages/redirect/redirect.html*",
+        "pages/options/options.html"
     ],
 
     "browser_action": {

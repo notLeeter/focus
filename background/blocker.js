@@ -1,13 +1,14 @@
 const filter = { urls: ["<all_urls>"], types: ["main_frame"] };
-import { blockSet, whitelistArr } from "./sets.js"
 const extraInfoSpec = ["blocking"];
 
+var blockSet = null;
+var whitelistSet = null;
 var timestamp = 0;
 
-async function loadTimestamp() {
-    await browser.storage.local.get('timestamp').then(object => {
-        timestamp = object.timestamp;
-    });
+async function loadVars() {
+    whitelistSet = await browser.storage.local.get('whitelist').then(obj => new Set(obj.whitelist));
+    blockSet = await browser.storage.local.get('blocklist').then(obj => new Set(obj.blocklist));
+    timestamp = await browser.storage.local.get('timestamp').then(obj => obj.timestamp);
 };
 
 async function removeListener() {
@@ -17,9 +18,13 @@ async function removeListener() {
 }
 
 async function webRequestListener(details) {
-    if (whitelistArr.some(v => details.url.includes(v))) return;
+    if (timestamp === 0) return;
+    whitelistSet = await browser.storage.local.get('whitelist').then(obj => new Set(obj.whitelist));
+    if (whitelistSet.has(details.url)) return;
 
-    var redirectUrl = browser.runtime.getURL(`../pages/redirect.html?${timestamp}&${details.url}`);
+    blockSet = await browser.storage.local.get('blocklist').then(obj => new Set(obj.blocklist));
+
+    var redirectUrl = browser.runtime.getURL(`../pages/redirect/redirect.html?${timestamp}&${details.url}`);
 
     var loadedUrl = details.url.replace(/^https?:\/\/(?:[^\/]+?\.)?([^\/]+\.[a-z]+).*$/, '$1');
     var blocked = blockSet.has(loadedUrl);
@@ -36,6 +41,9 @@ async function webRequestListener(details) {
 async function handleMessage(request) {
     if (!request.focusTimestamp) return;
 
+    whitelistSet = await browser.storage.local.get('whitelist').then(obj => new Set(obj.whitelist));
+    blockSet = await browser.storage.local.get('blocklist').then(obj => new Set(obj.blocklist));
+
     timestamp = request.focusTimestamp;
     setTimeout(removeListener, Math.floor(timestamp * 1000 - new Date().getTime()));
     browser.webRequest.onBeforeRequest.addListener(
@@ -47,7 +55,7 @@ async function handleMessage(request) {
 
 browser.runtime.onMessage.addListener(handleMessage);
 
-loadTimestamp().then(() => {
+loadVars().then(() => {
     setTimeout(removeListener, Math.floor(timestamp * 1000 - new Date().getTime()));
     browser.webRequest.onBeforeRequest.addListener(
         webRequestListener,

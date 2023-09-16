@@ -3,56 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        html, * {
-            background-color: #121212;
-            color: white;
-            font-family: 'Quicksand', sans-serif;
-        }
-
-        #title {
-            margin-bottom: 0;
-        }
-
-        #timer {
-            margin-bottom: 1em;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .timer-button {
-            display: inline-block;
-            border: darkcyan 1px solid;
-            padding: 10px;
-            width: 100px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 5px;
-        }
-
-        #reset-button {
-            display: inline-block;
-            border: darkred 1px solid;
-            padding: 10px;
-            width: 240px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 5px;
-        }
-    </style>
+    <title>FOCUS pop up</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1 id="title" class="center">FOCUS</h1>
     <div id="timer" class="center"><a id="time-left">loading</a> remaining</div>
+    <div class="center"><a id="options" target="_blank"><img src="assets/imgs/options.png" width="10px"> options</a></div>
     <ul>
         <li>
             <div data-timer-add="300" class="timer-button">5 min</div>
@@ -72,6 +29,6 @@
             </div>
         </li>
     </ul>
-    <script src="timer.js"></script>
+    <script src="assets/js/timer.js"></script>
 </body>
 </html>

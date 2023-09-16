@@ -52,4 +52,6 @@ loadTimestamp().then(() => {
     timer();
     setInterval(timer, 1000);
     listenForClicks();
-})
+});
+
+document.getElementById('options').href = browser.runtime.getURL(`../pages/options/options.html`);

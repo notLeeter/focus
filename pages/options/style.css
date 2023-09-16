@@ -1,0 +1,10 @@
+html, * {
+    background-color: #121212;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#warning {
+    color: red;
+    display: none;
+}

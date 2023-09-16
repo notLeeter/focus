@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <p id="warning">Please reload the page to see your changes</p>
+    <form>
+      <label for="color">Add website to blocklist: </label>
+      <input type="text" id="block-add" name="blocklist" /> <br />
+      
+      <label for="color">Add identifier to whitelist: </label>
+      <input type="text" id="whitelist-add" name="whitelist" />
+
+      <button type="submit">Save</button>
+    </form>
+
+    <a>Blocklist</a>
+    <ul id="blocklist"></ul>
+    <a>Whitelist</a>
+    <ul id="whitelist"></ul>
+    <script src="loadlist.js"></script>
+    <script src="listener.js"></script>
+  </body>
+</html>

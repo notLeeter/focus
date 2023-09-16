@@ -47,3 +47,5 @@ loadTimestamp().then(() => {
 timestamp = document.location.search.substring(1, 11);
 url = document.location.search.substring(12);
 document.getElementById('website-link').textContent = url;
+document.getElementById('settings').textContent = `settings`;
+document.getElementById('settings').href = browser.runtime.getURL(`../pages/options/options.html`);
